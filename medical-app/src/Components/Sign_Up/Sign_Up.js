@@ -38,7 +38,7 @@ const Sign_Up = () => {
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
             // Redirect to home page
-            navigate("/");
+            navigate("/booking-consultation");
             window.location.reload();
         } else {
             if (json.errors) {
