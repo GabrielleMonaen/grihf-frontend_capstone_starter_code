@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
+import BookingConsultation from './Components/BookingConsultation';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/instant-consultation" element={<InstantConsultation />} />
+        <Route path="/booking-consultation" element={<BookingConsultation />} />
       </Routes>
     </Router>
   );
