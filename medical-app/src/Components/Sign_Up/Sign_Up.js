@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Sign_Up.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
+import Setauthtoken from '../../Setauthtoken'; 
 
 const Sign_Up = () => {
     const [name, setName] = useState('');
@@ -9,6 +10,7 @@ const Sign_Up = () => {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [showerr, setShowerr] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const navigate = useNavigate();
 
@@ -31,16 +33,21 @@ const Sign_Up = () => {
 
         const json = await response.json();
 
+        console.log('Register API Response:', json); // Log the API response
+
         if (json.authtoken) {
             sessionStorage.setItem("auth-token", json.authtoken);
             sessionStorage.setItem("name", name);
             // phone and email
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
+            setIsLoggedIn(true);
+            return <Setauthtoken authtoken={json.authtoken} />;
             // Redirect to home page
             navigate("/booking-consultation");
             window.location.reload();
         } else {
+            console.log('User registration failed:', json);
             if (json.errors) {
                 for (const error of json.errors) {
                     setShowerr(error.msg);

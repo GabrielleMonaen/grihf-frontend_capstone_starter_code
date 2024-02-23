@@ -12,7 +12,7 @@ const Setauthtoken = () => {
         }
         else {
             sessionStorage.setItem('auth-token', params.authtoken);
-            navigate('/');
+            navigate('/booking-consultation');
         }
         // eslint-disable-next-line
     }, [])
